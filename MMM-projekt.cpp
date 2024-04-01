@@ -1,8 +1,53 @@
-﻿#include <cmath>
+﻿#include <iostream>
+#include <vector>
+#include <cmath>
 #include <matplot/matplot.h>
 
+using namespace matplot;
+
+#define N 4
+#define h 0.001
+#define T 10.0
+#define L 2.5
+#define M 8.0
+#define PI 3.14159265
+
+typedef struct { double n[N]; } Vect;
+typedef struct { double n[N][N]; } Matr;
+typedef union { char c[sizeof(double)]; double d; } Box;
+
+Vect operator+(const Vect& U, const Vect& V) {
+    Vect W;
+    for (int i = 0; i < N; i++)
+        W.n[i] = U.n[i] + V.n[i];
+    return W;
+}
+
+Vect operator*(const Vect& U, const double& d) {
+    Vect W;
+    for (int i = 0; i < N; i++)
+        W.n[i] = U.n[i] * d;
+    return W;
+}
+
+Vect operator*(const Matr& A, const Vect& V) {
+    Vect W;
+    for (int i = 0; i < N; i++) {
+        W.n[i] = 0;
+        for (int j = 0; j < N; j++)
+            W.n[i] += A.n[i][j] * V.n[j];
+    }
+    return W;
+}
+
+double operator*(const Vect& U, const Vect& V) {
+    double s = 0;
+    for (int i = 0; i < N; i++)
+        s += U.n[i] * V.n[i];
+    return s;
+}
+
 int matplotTest() {
-    using namespace matplot;
     std::vector<double> x = linspace(0, 2 * pi);
     std::vector<double> y = transform(x, [](auto x) { return sin(x); });
 
@@ -155,8 +200,80 @@ bool choice() {
     return 0;
 }
 
+
+
 int main() {
-    choice();
+    //choice();
     //matplotTest();
+    int i, total;
+    double a3, a2, a1, a0, b3, b2, b1, b0, w;
+    Matr A;
+    Vect B, C, Ax, Bu, xi, xi_1;
+    double D, Cx, Du;
+
+    std::cout << "\n a3 = "; std::cin >> a3;
+    std::cout << "\n a2 = "; std::cin >> a2;
+    std::cout << "\n a1 = "; std::cin >> a1;
+    std::cout << "\n a0 = "; std::cin >> a0;
+    std::cout << "\n b3 = "; std::cin >> b3;
+    std::cout << "\n b2 = "; std::cin >> b2;
+    std::cout << "\n b1 = "; std::cin >> b1;
+    std::cout << "\n b0 = "; std::cin >> b0;
+    std::cout << "\n\n";
+
+    A.n[0][0] = 0; A.n[0][1] = 1; A.n[0][2] = 0; A.n[0][3] = 0;
+    A.n[1][0] = 0; A.n[1][1] = 0; A.n[1][2] = 1; A.n[1][3] = 0;
+    A.n[2][0] = 0; A.n[2][1] = 0; A.n[2][2] = 0; A.n[2][3] = 1;
+    A.n[3][0] = -a0; A.n[3][1] = -a1; A.n[3][2] = -a2; A.n[3][3] = -a3;
+    B.n[0] = 0; B.n[1] = 0; B.n[2] = 0; B.n[3] = 1;
+    C.n[0] = b0; C.n[1] = b1; C.n[2] = b2; C.n[3] = b3;
+    D = 0;
+
+    total = static_cast<int>(1.0 * T / h);
+    w = 2.0 * PI * L / T;
+
+    std::vector<double> us(total + 1);
+    std::vector<double> uf(total + 1);
+    std::vector<double> y(total + 1);
+
+    for (i = 0; i <= total; i++) {
+        us[i] = M * sin(w * i * h);
+        uf[i] = (us[i] > 0) ? M : -M;
+    }
+
+    xi_1.n[0] = xi_1.n[1] = xi_1.n[2] = xi_1.n[3] = 0;
+
+    for (i = 0; i <= total; i++) {
+        Ax = A * xi_1;
+        Bu = B * us[i];
+        Cx = C * xi_1;
+        Du = D * us[i];
+        xi = Ax + Bu;
+        xi = xi * h;
+        xi = xi_1 + xi;
+        xi_1 = xi;
+        y[i] = Cx + Du;
+    }
+
+    std::vector<double> time(total + 1);
+    for (i = 0; i <= total; ++i) {
+        time[i] = i * h;
+    }
+
+    plot(time, us, "-r");
+    xlabel("Time (s)");
+    ylabel("u(t)");
+    title("u(t)");
+    show();
+
+   
+
+    // Create a plot for y(t)
+    plot(time, y, "-b");
+    xlabel("Time (s)");
+    ylabel("y(t)");
+    title("y(t)");
+    show();
+
     return 0;
 }
