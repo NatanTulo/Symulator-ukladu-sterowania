@@ -200,7 +200,265 @@ bool choice() {
     return 0;
 }
 
+void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0, double *k1, double *z1, double *p1, double *k2, double *z2, double *p2)
+{
+    setlocale(LC_ALL, "PL");
+    system("cls");
 
+    char parameter;
+
+    bool A0, A1, B0, B1, B2, K1, Z1, P1, K2, Z2, P2;
+    A0 = false;
+    A1 = false;
+    B0 = false;
+    B1 = false;
+    B2 = false;
+    K1 = false;
+    Z1 = false;
+    P1 = false;
+    K2 = false;
+    Z2 = false;
+    P2 = false;
+
+    char choice;
+
+
+    bool close = false;
+    bool close1 = false;
+    bool close2 = false;
+    bool close3 = false;
+
+    while (!close)
+    {
+        std::cout << "Wybierz, jakiemu elementowi chcesz nadać parametry:" << std::endl;
+        std::cout << "1. Transmitancja obiektu" << std::endl;
+        std::cout << "2. Sterownik LEAD" << std::endl;
+        std::cout << "3. Sterownik LAG" << std::endl;
+        std::cout << "4. Zatwierdź" << std::endl;
+        std::cin >> choice;
+        close1 = false;
+        close2 = false;
+        close3 = false;
+
+        switch (choice)
+        {
+        case '1':
+            while (!close1)
+            {
+                system("cls");
+                std::cout << "              ";
+                if (!A1) {
+                    std::cout << "a1";
+                }
+                else {
+                    std::cout << *a1;
+                }
+                std::cout << "*s + ";
+                if (!A0) {
+                    std::cout << "a0" << std::endl;
+                }
+                else {
+                    std::cout << *a0 << std::endl;
+                }
+
+                std::cout << "G(s) = -----------------------" << std::endl;
+
+                std::cout << "         ";
+                if (!B2) {
+                    std::cout << "b2";
+                }
+                else {
+                    std::cout << *b2;
+                }
+                std::cout << "*s^2 + ";
+                if (!B1) {
+                    std::cout << "b1";
+                }
+                else {
+                    std::cout << *b1;
+                }
+                std::cout << "*s + ";
+                if (!B0) {
+                    std::cout << "b0" << std::endl;
+                }
+                else {
+                    std::cout << *b0 << std::endl;
+                }
+
+                std::cout << "Który parametr chcesz zmienić?:" << std::endl;
+                std::cout << "1. a1" << std::endl;
+                std::cout << "2. a0" << std::endl;
+                std::cout << "3. b2" << std::endl;
+                std::cout << "4. b1" << std::endl;
+                std::cout << "5. b0" << std::endl;
+                std::cout << "6. Zatwierdź" << std::endl;
+
+                std::cin >> parameter;
+                switch (parameter) {
+                case '1':
+                    std::cout << "Podaj nową wartość parametru a1:";
+                    std::cin >> *a1;
+                    A1 = true;
+                    break;
+                case '2':
+                    std::cout << "Podaj nową wartość parametru a0:";
+                    std::cin >> *a0;
+                    A0 = true;
+                    break;
+                case '3':
+                    std::cout << "Podaj nową wartość parametru b2:";
+                    std::cin >> *b2;
+                    B2 = true;
+                    break;
+                case '4':
+                    std::cout << "Podaj nową wartość parametru b1:";
+                    std::cin >> *b1;
+                    B1 = true;
+                    break;
+                case '5':
+                    std::cout << "Podaj nową wartość parametru b0:";
+                    std::cin >> *b0;
+                    B0 = true;
+                    break;
+                case '6':
+                    if (A1 && A0 && B2 && B1 && B0)
+                    {
+                        close1 = true;
+                    }
+                    else
+                        std::cout << "Nie nadano wartości wszystkim parametrom";
+                }
+            }
+        case '2':
+            while (!close2)
+            {
+                system("cls");
+                std::cout << "             (s - ";
+                if (!Z1) {
+                    std::cout << "z1";
+                }
+                else {
+                    std::cout << *z1;
+                }
+                std::cout << ')' << std::endl;
+
+                std::cout << "G(s) = ";
+                if (!K1) {
+                    std::cout << "k1";
+                }
+                else {
+                    std::cout << *k1;
+                }
+                std::cout << "* --------------" << std::endl;
+                std::cout << "             (s - ";
+                if (!P1) {
+                    std::cout << "p1";
+                }
+                else {
+                    std::cout << *p1;
+                }
+                std::cout << ')' << std::endl;
+
+                std::cout << "Który parametr chcesz zmienić?:" << std::endl;
+                std::cout << "1. k1" << std::endl;
+                std::cout << "2. z1" << std::endl;
+                std::cout << "3. p1" << std::endl;
+                std::cout << "4. Zatwierdź" << std::endl;
+
+                std::cin >> parameter;
+                switch (parameter) {
+                case '1':
+                    std::cout << "Podaj nową wartość parametru k1:";
+                    std::cin >> *k1;
+                    K1 = true;
+                    break;
+                case '2':
+                    std::cout << "Podaj nową wartość parametru z1:";
+                    std::cin >> *z1;
+                    Z1 = true;
+                    break;
+                case '3':
+                    std::cout << "Podaj nową wartość parametru p1:";
+                    std::cin >> *p1;
+                    P1 = true;
+                    break;
+                case '4':
+                    if (K1 && Z1 && P1)
+                    {
+                        close2 = true;
+                    }
+                    break;
+                }
+            }
+
+        case '3':
+            while (!close3)
+            {
+                system("cls");
+                std::cout << "             (s - ";
+                if (!Z2) {
+                    std::cout << "z2";
+                }
+                else {
+                    std::cout << *z2;
+                }
+                std::cout << ')' << std::endl;
+
+                std::cout << "G(s) = ";
+                if (!K2) {
+                    std::cout << "k2";
+                }
+                else {
+                    std::cout << *k2;
+                }
+                std::cout << "* --------------" << std::endl;
+                std::cout << "             (s - ";
+                if (!P2) {
+                    std::cout << "p2";
+                }
+                else {
+                    std::cout << *p2;
+                }
+                std::cout << ')' << std::endl;
+
+                std::cout << "Który parametr chcesz zmienić?:" << std::endl;
+                std::cout << "1. k2" << std::endl;
+                std::cout << "2. z2" << std::endl;
+                std::cout << "3. p2" << std::endl;
+                std::cout << "4. Zatwierdź" << std::endl;
+
+                std::cin >> parameter;
+                switch (parameter) {
+                case '1':
+                    std::cout << "Podaj nową wartość parametru k2:";
+                    std::cin >> *k2;
+                    K2 = true;
+                    break;
+                case '2':
+                    std::cout << "Podaj nową wartość parametru z2:";
+                    std::cin >> *z2;
+                    Z2 = true;
+                    break;
+                case '3':
+                    std::cout << "Podaj nową wartość parametru p2:";
+                    std::cin >> *p2;
+                    P2 = true;
+                    break;
+                case '4':
+                    if (K2 && Z2 && P2)
+                    {
+                        close3 = true;
+                    }
+                    else
+                        std::cout << "Nie nadano wartości wszystkim parametrom";
+                    break;
+                }
+            }
+        }
+        if (A0 && A1 && B0 && B1 && B2 && K1 && Z1 && P1 && K2 && Z2 && P2)
+            close = true;
+    }
+}
 
 
 int main() {
@@ -212,39 +470,30 @@ int main() {
     Vect B, C, Ax, Bu, xi, xi_1;
     double D, Cx, Du;
 
-    double a1, a0, b2, b1, b0, k1, z1, p1, k2, z2, p2;
-    std::cout << "Podaj wartość parametru a1:" << std::endl;
-    std::cin >> a1;
-    std::cout << "Podaj wartość parametru a0:" << std::endl;
-    std::cin >> a0;
-    std::cout << "Podaj wartość parametru b2:" << std::endl;
-    std::cin >> b2;
-    std::cout << "Podaj wartość parametru b1:" << std::endl;
-    std::cin >> b1;
-    std::cout << "Podaj wartość parametru b0:" << std::endl;
-    std::cin >> b0;
-    std::cout << "Podaj wartość parametru k1:" << std::endl;
-    std::cin >> k1;
-    std::cout << "Podaj wartość parametru z1:" << std::endl;
-    std::cin >> z1;
-    std::cout << "Podaj wartość parametru p1:" << std::endl;
-    std::cin >> p1;
-    std::cout << "Podaj wartość parametru k2:" << std::endl;
-    std::cin >> k2;
-    std::cout << "Podaj wartość parametru z2:" << std::endl;
-    std::cin >> z2;
-    std::cout << "Podaj wartość parametru p2:" << std::endl;
-    std::cin >> p2;
+    double a11, a00, b22, b11, b00, k11, z11, p11, k22, z22, p22;
+    a11 = 0;
+    a00 = 0;
+    b22 = 0;
+    b11 = 0;
+    b00 = 0;
+    k11 = 0;
+    z11 = 0;
+    k22 = 0;
+    z22 = 0;
+    p22 = 0;
 
-    aa0 = (b0 * p1 * p2 + k1 * k2 * a0 * z1 * z2) / b2;
-    aa1 = (-b0 * p1 - b0 * p2 + b1 * p1 * p2 - k1 * k2 * a0 * z1 - k1 * k2 * a0 * z2 + k1 * k2 * a1 * z1 * z2)/b2;
-    aa2 = (b0 - b1 * p1 - b1 * p2 + p1 * p2 * b2 + k1 * k2 * a0 - k1 * k2 * a1 * z1 - k1 * k2 * a1 * z2) / b2;
-    aa3 = (b1 - b2 * p1 - b2 * p2 + k1 * k2 * a1) / b2;
+    getTransmittance(&a11, &a00, &b22, &b11, &b00, &k11, &z11, &p11, &k22, &z22, &p22);
+    
 
-    bb0 = (k1 * k2 * a0 * z1 * z2) / b2;
-    bb1 = (-k1 * k2 * a0 * z2 + k1 * k2 * a1 * z1 * z2) / b2;
-    bb2 = (k1 * k2 * a0 - k1 * k2 * a1 * z1 - k1 * k2 * a1 * z2) / b2;
-    bb3 = k1 * k2 * a1 / b2;
+    aa0 = (b00 * p11 * p22 + k11 * k22 * a00 * z11 * z22) / b22;
+    aa1 = (-b00 * p11 - b00 * p22 + b11 * p11 * p22 - k11 * k22 * a00 * z11 - k11 * k22 * a00 * z22 + k11 * k22 * a11 * z11 * z22)/b22;
+    aa2 = (b00 - b11 * p11 - b11 * p22 + p11 * p22 * b22 + k11 * k22 * a00 - k11 * k22 * a11 * z11 - k11 * k22 * a11 * z22) / b22;
+    aa3 = (b11 - b22 * p11 - b22 * p22 + k11 * k22 * a11) / b22;
+
+    bb0 = (k11 * k22 * a00 * z11 * z22) / b22;
+    bb1 = (-k11 * k22 * a00 * z22 + k11 * k22 * a11 * z11 * z22) / b22;
+    bb2 = (k11 * k22 * a00 - k11 * k22 * a11 * z11 - k11 * k22 * a11 * z22) / b22;
+    bb3 = k11 * k22 * a11 / b22;
 
     A.n[0][0] = 0; A.n[0][1] = 1; A.n[0][2] = 0; A.n[0][3] = 0;
     A.n[1][0] = 0; A.n[1][1] = 0; A.n[1][2] = 1; A.n[1][3] = 0;
@@ -259,11 +508,15 @@ int main() {
 
     std::vector<double> us(total + 1);
     std::vector<double> uf(total + 1);
+    std::vector<double> ut(total + 1);
     std::vector<double> y(total + 1);
+    
 
     for (i = 0; i <= total; i++) {
         us[i] = M * sin(w * i * h);
         uf[i] = (us[i] > 0) ? M : -M;
+        double t1 = fmod(w * i * h, (2 * M)) - M;
+        ut[i] = (t1 < 0) ? (M + t1) : (M - t1);
     }
 
     xi_1.n[0] = xi_1.n[1] = xi_1.n[2] = xi_1.n[3] = 0;
