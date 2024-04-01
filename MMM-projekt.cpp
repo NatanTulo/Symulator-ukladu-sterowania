@@ -230,11 +230,12 @@ void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0
 
     while (!close)
     {
+        system("cls");
         std::cout << "Wybierz, jakiemu elementowi chcesz nadać parametry:" << std::endl;
         std::cout << "1. Transmitancja obiektu" << std::endl;
         std::cout << "2. Sterownik LEAD" << std::endl;
         std::cout << "3. Sterownik LAG" << std::endl;
-        std::cout << "4. Zatwierdź" << std::endl;
+        std::cout << "4. Zatwierdź i wyświetl wykresy wejścia i wyjścia" << std::endl;
         std::cin >> choice;
         close1 = false;
         close2 = false;
@@ -246,6 +247,7 @@ void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0
             while (!close1)
             {
                 system("cls");
+                std::cout << "Transmitancja obiektu:" << std::endl;
                 std::cout << "              ";
                 if (!A1) {
                     std::cout << "a1";
@@ -326,13 +328,19 @@ void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0
                         close1 = true;
                     }
                     else
+                    {
+                        system("cls");
                         std::cout << "Nie nadano wartości wszystkim parametrom";
+                        std::cin >> parameter;
+                    }
                 }
             }
+            break;
         case '2':
             while (!close2)
             {
                 system("cls");
+                std::cout << "Transmitacja sterownika LEAD: " << std::endl;
                 std::cout << "             (s - ";
                 if (!Z1) {
                     std::cout << "z1";
@@ -387,14 +395,22 @@ void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0
                     {
                         close2 = true;
                     }
+                    else
+                    {
+                        system("cls");
+                        std::cout << "Nie nadano wartości wszystkim parametrom";
+                        std::cin >> parameter;
+                    }
                     break;
                 }
             }
+            break;
 
         case '3':
             while (!close3)
             {
                 system("cls");
+                std::cout << "Transmitacja sterownika LAG: " << std::endl;
                 std::cout << "             (s - ";
                 if (!Z2) {
                     std::cout << "z2";
@@ -450,13 +466,28 @@ void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0
                         close3 = true;
                     }
                     else
+                    {
+                        system("cls");
                         std::cout << "Nie nadano wartości wszystkim parametrom";
+                        std::cin >> parameter;
+                    }
+                        
                     break;
                 }
             }
+            break;
+        case '4':
+            if (A0 && A1 && B0 && B1 && B2 && K1 && Z1 && P1 && K2 && Z2 && P2)
+                close = true;
+            else
+            {
+                system("cls");
+                std::cout << "Nie nadano wszystkich potrzebnych wartości" << std::endl;
+                std::cin >> choice;
+            }
+                
         }
-        if (A0 && A1 && B0 && B1 && B2 && K1 && Z1 && P1 && K2 && Z2 && P2)
-            close = true;
+        
     }
 }
 
