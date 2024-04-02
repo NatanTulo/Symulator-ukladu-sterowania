@@ -492,47 +492,57 @@ void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0
 }
 
 
+void calculations(double* a1, double* a0, double* b2, double* b1, double* b0, double* k1, double* z1, double* p1, double* k2, double* z2, double* p2, double *aa0, double *aa1, double* aa2, double* aa3, double *bb0, double *bb1, double *bb2, double *bb3)
+{
+    *aa0 = ((*b0) * (*p1) * (*p2) + (*k1) * (*k2) * (*a0) * (*z1) * (*z2)) / (*b2);
+    *aa1 = (-(*b0) * (*p1) - (*b0) * (*p2) + (*b1) * (*p1) * (*p2) - (*k1) * (*k2) * (*a0) * (*z1) - (*k1) * (*k2) * (*a0) * (*z2) + (*k1) * (*k2) * (*a1) * (*z1) * (*z2)) / (*b2);
+    *aa2 = ((*b0) - (*b1) * (*p1) - (*b1) * (*p2) + (*p1) * (*p2) * (*b2) + (*k1) * (*k2) * (*a0) - (*k1) * (*k2) * (*a1) * (*z1) - (*k1) * (*k2) * (*a1) * (*z2)) / (*b2);
+    *aa3 = ((*b1) - (*b2) * (*p1) - (*b2) * (*p2) + (*k1) * (*k2) * (*a1)) / (*b2);
+
+    *bb0 = ((*k1) * (*k2) * (*a0) * (*z1) * (*z2)) / (*b2);
+    *bb1 = (-(*k1) * (*k2) * (*a0) * (*z1) - (*k1) * (*k2) * (*a0) * (*z2) + (*k1) * (*k2) * (*a1) * (*z1) * (*z2)) / (*b2);
+    *bb2 = ((*k1) * (*k2) * (*a0) - (*k1) * (*k2) * (*a1) * (*z1) - (*k1) * (*k2) * (*a1) * (*z2)) / (*b2);
+    *bb3 = (*k1) * (*k2) * (*a1) / (*b2);
+
+}
+
+
 int main() {
     //choice();
     //matplotTest();
     int i, total;
-    double aa3, aa2, aa1, aa0, bb3, bb2, bb1, bb0, w;
+    double aa33, aa22, aa11, aa00, bb33, bb22, bb11, bb00, w;
     Matr A;
     Vect B, C, Ax, Bu, xi, xi_1;
     double D, Cx, Du;
 
-    double a11, a00, b22, b11, b00, k11, z11, p11, k22, z22, p22;
-    a11 = 0;
-    a00 = 0;
-    b22 = 0;
-    b11 = 0;
-    b00 = 0;
-    k11 = 0;
-    z11 = 0;
-    k22 = 0;
-    z22 = 0;
-    p22 = 0;
+    double a11 = 0, a00 = 0, b22 = 0, b11 = 0, b00 = 0, k11 = 0, z11 = 0, p11 = 0, k22 = 0, z22 = 0, p22 = 0;
+
 
     getTransmittance(&a11, &a00, &b22, &b11, &b00, &k11, &z11, &p11, &k22, &z22, &p22);
+    calculations(&a11, &a00, &b22, &b11, &b00, &k11, &z11, &p11, &k22, &z22, &p22, &aa00, &aa11, &aa22, &aa33, &bb00, &bb11, &bb22, &bb33);
+
+   
+    
+    A.n[0][0] = 0; A.n[0][1] = 1; A.n[0][2] = 0; A.n[0][3] = 0;
+    A.n[1][0] = 0; A.n[1][1] = 0; A.n[1][2] = 1; A.n[1][3] = 0;
+    A.n[2][0] = 0; A.n[2][1] = 0; A.n[2][2] = 0; A.n[2][3] = 1;
+    A.n[3][0] = -aa00; A.n[3][1] = -aa11; A.n[3][2] = -aa22; A.n[3][3] = -aa33;
+    B.n[0] = 0; B.n[1] = 0; B.n[2] = 0; B.n[3] = 1;
+    C.n[0] = bb00; C.n[1] = bb11; C.n[2] = bb22; C.n[3] = bb33;
+    D = 0;
     
 
-    aa0 = (b00 * p11 * p22 + k11 * k22 * a00 * z11 * z22) / b22;
-    aa1 = (-b00 * p11 - b00 * p22 + b11 * p11 * p22 - k11 * k22 * a00 * z11 - k11 * k22 * a00 * z22 + k11 * k22 * a11 * z11 * z22)/b22;
-    aa2 = (b00 - b11 * p11 - b11 * p22 + p11 * p22 * b22 + k11 * k22 * a00 - k11 * k22 * a11 * z11 - k11 * k22 * a11 * z22) / b22;
-    aa3 = (b11 - b22 * p11 - b22 * p22 + k11 * k22 * a11) / b22;
-
-    bb0 = (k11 * k22 * a00 * z11 * z22) / b22;
-    bb1 = (-k11 * k22 * a00 * z22 + k11 * k22 * a11 * z11 * z22) / b22;
-    bb2 = (k11 * k22 * a00 - k11 * k22 * a11 * z11 - k11 * k22 * a11 * z22) / b22;
-    bb3 = k11 * k22 * a11 / b22;
-
-    A.n[0][0] = 0; A.n[0][1] = 1; A.n[0][2] = 0; A.n[0][3] = 0;
+    /*
+      A.n[0][0] = 0; A.n[0][1] = 1; A.n[0][2] = 0; A.n[0][3] = 0;
     A.n[1][0] = 0; A.n[1][1] = 0; A.n[1][2] = 1; A.n[1][3] = 0;
     A.n[2][0] = 0; A.n[2][1] = 0; A.n[2][2] = 0; A.n[2][3] = 1;
     A.n[3][0] = -aa0; A.n[3][1] = -aa1; A.n[3][2] = -aa2; A.n[3][3] = -aa3;
     B.n[0] = 0; B.n[1] = 0; B.n[2] = 0; B.n[3] = 1;
     C.n[0] = bb0; C.n[1] = bb1; C.n[2] = bb2; C.n[3] = bb3;
     D = 0;
+    */
+  
 
     total = static_cast<int>(1.0 * T / h);
     w = 2.0 * PI * L / T;
