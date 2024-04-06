@@ -60,26 +60,69 @@ int matplotTest() {
     show();
 }
 
-void handleSquare(double amplitude, double fill, double duration, double offset, double period) {
-    system("cls");
-    std::cout << "Amplituda: " << amplitude << "\tWypełnienie: " << fill << '%' << "\tCzas trwania: " << duration << "\tOffset: " << offset << "\tOkres: " << period << std::endl;
+std::vector<double> handleSquare(double amplitude, double fill, double duration, double offset, double period) {
+    int total = static_cast<int>(1.0 * duration / h);
+    int Ton=static_cast<int>(fill * period / 100);
+
+    std::vector<double> u(total + 1);
+
+    for (int i = 0; i <= total; i++) {
+		if (i % static_cast<int>(period / h) < Ton / h) {
+			u[i] = amplitude+offset;
+		}
+		else {
+			u[i] = -amplitude+offset;
+		}
+	}
+    u.push_back(total);
+    return u;
 }
 
-bool choice() {
+std::vector<double> handleSine(double amplitude, double duration, double offset, double period) {
+	int total = static_cast<int>(1.0 * duration / h);
+	double w = 2.0 * PI / period;
+
+	std::vector<double> u(total + 1);
+
+    for (int i = 0; i <= total; i++) {
+		u[i] = amplitude*sin(w * i * h)+offset;
+	}
+    u.push_back(total);
+    return u;
+}
+
+std::vector<double> handleTriangle(double amplitude, double duration, double offset, double period) {
+    int total = static_cast<int>(1.0 * duration / h);
+    double w = 2.0 / period;
+
+    std::vector<double> u(total + 1);
+
+    for (int i = 0; i <= total; i++) {
+        if( fmod(w * i * h, (2 * amplitude)) < amplitude)
+			u[i] = fmod(w * i * h, (2 * amplitude))+offset-amplitude;
+		else
+			u[i] = 1*amplitude-fmod(w * i * h, (2 * amplitude))+offset;
+    }
+    u.push_back(total);
+    return u;
+}
+
+std::vector<double> choice() {
     setlocale(LC_ALL, "PL");
     system("cls");
     std::cout << "Wybierz sygnał wejściowy:" << std::endl;
     std::cout << "1. Prostokątny" << std::endl;
-    std::cout << "2. Trójkątny" << std::endl;
-    std::cout << "3. Harmoniczny" << std::endl;
-    char choice;
+    std::cout << "2. Harmoniczny" << std::endl;
+    std::cout << "3. Trójkątny" << std::endl;
+    char choice, choice2;
+    double amplitude, fill, duration, offset, period, frequency;
     std::cin >> choice;
     while (choice != '1' && choice != '2' && choice != '3') {
         system("cls");
         std::cout << "Wybierz sygnał wejściowy:" << std::endl;
         std::cout << "1. Prostokątny" << std::endl;
-        std::cout << "2. Trójkątny" << std::endl;
-        std::cout << "3. Harmoniczny" << std::endl<<std::endl;
+        std::cout << "2. Harmoniczny" << std::endl;
+        std::cout << "3. Trójkątny" << std::endl;
         std::cout << "Niepoprawny wybór" << std::endl;
 		std::cin >> choice;
 	}
@@ -88,7 +131,6 @@ bool choice() {
         system("cls");
         std::cout << "Wybierz parametry sygnału" << std::endl;
         std::cout << "Podaj amplitudę: ";
-        double amplitude;
         while (!(std::cin >> amplitude) || amplitude <= 0) {
             std::cin.clear();
             std::cin.ignore(1024, '\n');
@@ -100,7 +142,6 @@ bool choice() {
         std::cout << "Wybierz parametry sygnału" << std::endl;
         std::cout << "Amplituda: " << amplitude << std::endl;
         std::cout << "Podaj wypełnienie [%]: ";
-        double fill;
         while (!(std::cin >> fill) || fill <= 0 || fill >= 100) {
             std::cin.clear();
             std::cin.ignore(1024, '\n');
@@ -114,7 +155,6 @@ bool choice() {
         std::cout << "Wybierz parametry sygnału" << std::endl;
         std::cout << "Amplituda: " << amplitude << "\tWypełnienie: " << fill << '%' << std::endl;
         std::cout << "Podaj czas trwania sygnału: ";
-        double duration;
         while (!(std::cin >> duration) || duration <= 0) {
             std::cin.clear();
             std::cin.ignore(1024, '\n');
@@ -127,7 +167,6 @@ bool choice() {
         std::cout << "Wybierz parametry sygnału" << std::endl;
         std::cout << "Amplituda: " << amplitude << "\tWypełnienie: " << fill << '%' << "\tCzas trwania: " << duration << std::endl;
         std::cout << "Podaj offset:";
-        double offset;
         while (!(std::cin >> offset)) {
             std::cin.clear();
             std::cin.ignore(1024, '\n');
@@ -142,7 +181,6 @@ bool choice() {
         std::cout << "Wybierz jaki parametr chcesz podać:" << std::endl;
         std::cout << "1. Okres" << std::endl;
         std::cout << "2. Częstotliwość" << std::endl;
-        char choice2;
         std::cin >> choice2;
         while (choice2 != '1' && choice2 != '2') {
             system("cls");
@@ -160,7 +198,6 @@ bool choice() {
         switch (choice2) {
             case '1':
                 std::cout << "Podaj okres: ";
-                double period;
                 while (!(std::cin >> period) || period <= 0) {
                     std::cin.clear();
                     std::cin.ignore(1024, '\n');
@@ -169,11 +206,10 @@ bool choice() {
                     std::cout << "Amplituda: " << amplitude << "\tWypełnienie: " << fill << '%' << "\tCzas trwania: " << duration << "\tOffset: " << offset << std::endl;
                     std::cout << "Podaj okres: ";
                 }
-                handleSquare(amplitude, fill, duration, offset, period);
+                return handleSquare(amplitude, fill, duration, offset, period);
                 break;
             case '2':
                 std::cout << "Podaj częstotliwość: ";
-                double frequency;
                 while (!(std::cin >> frequency) || frequency <= 0) {
                     std::cin.clear();
                     std::cin.ignore(1024, '\n');
@@ -182,22 +218,97 @@ bool choice() {
                     std::cout << "Amplituda: " << amplitude << "\tWypełnienie: " << fill << '%' << "\tCzas trwania: " << duration << "\tOffset: " << offset << std::endl;
                     std::cout << "Podaj częstotliwość: ";
                 }
-                handleSquare(amplitude, fill, duration, offset, 1 / frequency);
+                return handleSquare(amplitude, fill, duration, offset, 1 / frequency);
                 break;
-            default:
-                return 1;
         }
         break;
     case '2':
-        // Sygnał trójkątny
-        break;
     case '3':
-        // Sygnał harmoniczny
+        system("cls");
+        std::cout << "Wybierz parametry sygnału" << std::endl;
+        std::cout << "Podaj amplitudę: ";
+        while (!(std::cin >> amplitude) || amplitude <= 0) {
+            std::cin.clear();
+            std::cin.ignore(1024, '\n');
+            system("cls");
+            std::cout << "Amplituda musi być większa od zera" << std::endl;
+            std::cout << "Podaj amplitudę: ";
+        }
+        system("cls");
+        std::cout << "Wybierz parametry sygnału" << std::endl;
+        std::cout << "Amplituda: " << amplitude << std::endl;
+        std::cout << "Podaj czas trwania sygnału: ";
+        while (!(std::cin >> duration) || duration <= 0) {
+            std::cin.clear();
+            std::cin.ignore(1024, '\n');
+            system("cls");
+            std::cout << "Czas trwania musi być większy od zera" << std::endl;
+            std::cout << "Amplituda: " << amplitude << std::endl;
+            std::cout << "Podaj czas trwania sygnału: ";
+        }
+        system("cls");
+        std::cout << "Wybierz parametry sygnału" << std::endl;
+        std::cout << "Amplituda: " << amplitude << "\tCzas trwania: " << duration << std::endl;
+        std::cout << "Podaj offset:";
+        while (!(std::cin >> offset)) {
+            std::cin.clear();
+            std::cin.ignore(1024, '\n');
+            system("cls");
+            std::cout << "Offset musi być liczbą" << std::endl;
+            std::cout << "Amplituda: " << amplitude << "\tCzas trwania: " << duration << std::endl;
+            std::cout << "Podaj offset:";
+        }
+        system("cls");
+        std::cout << "Wybierz parametry sygnału" << std::endl;
+        std::cout << "Amplituda: " << amplitude << "\tCzas trwania: " << duration << "\tOffset: " << offset << std::endl;
+        std::cout << "Wybierz jaki parametr chcesz podać:" << std::endl;
+        std::cout << "1. Okres" << std::endl;
+        std::cout << "2. Częstotliwość" << std::endl;
+        std::cin >> choice2;
+        while (choice2 != '1' && choice2 != '2') {
+            system("cls");
+            std::cout << "Wybierz parametry sygnału" << std::endl;
+            std::cout << "Amplituda: " << amplitude << "\tCzas trwania: " << duration << "\tOffset: " << offset << std::endl;
+            std::cout << "Wybierz jaki parametr chcesz podać:" << std::endl;
+            std::cout << "1. Okres" << std::endl;
+            std::cout << "2. Częstotliwość" << std::endl << std::endl;
+            std::cout << "Niepoprawny wybór" << std::endl;
+            std::cin >> choice2;
+        }
+        system("cls");
+        std::cout << "Wybierz parametry sygnału" << std::endl;
+        std::cout << "Amplituda: " << amplitude << "\tCzas trwania: " << duration << "\tOffset: " << offset << std::endl;
+        switch (choice2) {
+        case '1':
+            std::cout << "Podaj okres: ";
+            while (!(std::cin >> period) || period <= 0) {
+                std::cin.clear();
+                std::cin.ignore(1024, '\n');
+                system("cls");
+                std::cout << "Okres musi być większy od zera" << std::endl;
+                std::cout << "Amplituda: " << amplitude << "\tCzas trwania: " << duration << "\tOffset: " << offset << std::endl;
+                std::cout << "Podaj okres: ";
+            }
+            if(choice == '2') return handleSine(amplitude, duration, offset, period);
+			else return handleTriangle(amplitude, duration, offset, period);
+             
+            break;
+        case '2':
+            std::cout << "Podaj częstotliwość: ";
+            while (!(std::cin >> frequency) || frequency <= 0) {
+                std::cin.clear();
+                std::cin.ignore(1024, '\n');
+                system("cls");
+                std::cout << "Częstotliwość musi być większa od zera" << std::endl;
+                std::cout << "Amplituda: " << amplitude << "\tCzas trwania: " << duration << "\tOffset: " << offset << std::endl;
+                std::cout << "Podaj częstotliwość: ";
+            }
+            if (choice == '2') return handleSine(amplitude, duration, offset, 1 / frequency);
+            else return handleTriangle(amplitude, duration, offset, 1 / frequency);
+            break;
+        }
         break;
-    default:
-        return 1;
     }
-    return 0;
 }
 
 void getTransmittance(double *a1, double *a0, double *b2, double *b1, double *b0, double *k1, double *z1, double *p1, double *k2, double *z2, double *p2)
@@ -508,7 +619,6 @@ void calculations(double* a1, double* a0, double* b2, double* b1, double* b0, do
 
 
 int main() {
-    //choice();
     //matplotTest();
     int i, total;
     double aa33, aa22, aa11, aa00, bb33, bb22, bb11, bb00, w;
@@ -534,7 +644,7 @@ int main() {
     
 
     /*
-      A.n[0][0] = 0; A.n[0][1] = 1; A.n[0][2] = 0; A.n[0][3] = 0;
+    A.n[0][0] = 0; A.n[0][1] = 1; A.n[0][2] = 0; A.n[0][3] = 0;
     A.n[1][0] = 0; A.n[1][1] = 0; A.n[1][2] = 1; A.n[1][3] = 0;
     A.n[2][0] = 0; A.n[2][1] = 0; A.n[2][2] = 0; A.n[2][3] = 1;
     A.n[3][0] = -aa0; A.n[3][1] = -aa1; A.n[3][2] = -aa2; A.n[3][3] = -aa3;
@@ -542,31 +652,22 @@ int main() {
     C.n[0] = bb0; C.n[1] = bb1; C.n[2] = bb2; C.n[3] = bb3;
     D = 0;
     */
-  
+ 
 
-    total = static_cast<int>(1.0 * T / h);
-    w = 2.0 * PI * L / T;
+    std::vector<double> signal = choice();
 
-    std::vector<double> us(total + 1);
-    std::vector<double> uf(total + 1);
-    std::vector<double> ut(total + 1);
+    total = signal.back();
+    signal.pop_back();
+
     std::vector<double> y(total + 1);
-    
-
-    for (i = 0; i <= total; i++) {
-        us[i] = M * sin(w * i * h);
-        uf[i] = (us[i] > 0) ? M : -M;
-        double t1 = fmod(w * i * h, (2 * M)) - M;
-        ut[i] = (t1 < 0) ? (M + t1) : (M - t1);
-    }
 
     xi_1.n[0] = xi_1.n[1] = xi_1.n[2] = xi_1.n[3] = 0;
 
     for (i = 0; i <= total; i++) {
         Ax = A * xi_1;
-        Bu = B * us[i];
+        Bu = B * signal[i];
         Cx = C * xi_1;
-        Du = D * us[i];
+        Du = D * signal[i];
         xi = Ax + Bu;
         xi = xi * h;
         xi = xi_1 + xi;
@@ -579,7 +680,7 @@ int main() {
         time[i] = i * h;
     }
 
-    plot(time, us, "-r");
+    plot(time, signal, "-r");
     xlabel("Time (s)");
     ylabel("u(t)");
     title("u(t)");
