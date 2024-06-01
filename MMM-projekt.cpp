@@ -50,7 +50,7 @@ double operator*(const Vect& U, const Vect& V) {
 void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double* k1, double* z1, double* p1, double* k2, double* z2, double* p2, double* m, double *ff, bool *wyswietlWykresy, bool *zamknij, bool *harmonicImput, bool *rectangularImput, bool *triangularImput)
 {
     // Utworzenie głównego okna
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Text Input");
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Korektor Lead-Lag");
 
     // Załaduj czcionkę
     sf::Font font;
@@ -62,7 +62,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     inputText.setFillColor(sf::Color::Black);
     inputText.setPosition(50.f, 50.f);
 
-    sf::Text zatwierdzanie("ZATWIERDZ", font, 20);
+    sf::Text zatwierdzanie(L"ZATWIERDŹ", font, 20);
     zatwierdzanie.setFillColor(sf::Color::Black);
     zatwierdzanie.setPosition(1700, 920);
 
@@ -78,7 +78,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     przyciskCofania.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
     przyciskCofania.setPosition(1680.0f, 907.0f);
 
-    sf::Text wychodzenie("WYJDZ", font, 20);
+    sf::Text wychodzenie(L"WYJDŹ", font, 20);
     wychodzenie.setFillColor(sf::Color::Black);
     wychodzenie.setPosition(1719, 840);
 
@@ -87,7 +87,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     przyciskWychodzenia.setPosition(1680.0f, 827.0f);
 
     //OKNO GŁÓWNE
-    sf::Text wyborCzynnosci("WYBIERZ, CO CHCESZ ZROBIC:", font, 30);
+    sf::Text wyborCzynnosci(L"WYBIERZ, CO CHCESZ ZROBIĆ:", font, 30);
     wyborCzynnosci.setFillColor(sf::Color::Black);
     wyborCzynnosci.setPosition(750.f, 50.f);
 
@@ -112,12 +112,12 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     czynnosc4.setPosition(550.0f, 800.0f);
 
 
-    sf::Text wyborWejscia("wybierz sygnal wejsciowy", font, 30);
+    sf::Text wyborWejscia(L"wybierz sygnał wejściowy", font, 30);
     wyborWejscia.setFillColor(sf::Color::Black);
     wyborWejscia.setPosition(370.f, 320.f);
 
 
-    sf::Text transmitancjaObiektu("podaj parametry transmitancji obiektu", font, 30);
+    sf::Text transmitancjaObiektu(L"podaj parametry transmitancji obiektu", font, 30);
     transmitancjaObiektu.setFillColor(sf::Color::Black);
     transmitancjaObiektu.setPosition(300.f, 520.f);
 
@@ -129,7 +129,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     transmitancjaLag.setFillColor(sf::Color::Black);
     transmitancjaLag.setPosition(1125.f, 520.f);
 
-    sf::Text zakoncz("zakoncz i wyswietl wykresy", font, 30);
+    sf::Text zakoncz(L"zakończ i wyświetl wykresy", font, 30);
     zakoncz.setFillColor(sf::Color::Black);
     zakoncz.setPosition(750.f, 820.f);
 
@@ -143,7 +143,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
     //WPROWADZANIE PARAMETRÓW OBIEKTU
 
-    sf::Text wstepObiekt("PODAJ TRANSMITANCJE OBIEKTU: ", font, 30.f);
+    sf::Text wstepObiekt(L"PODAJ TRANSMITANCJĘ OBIEKTU: ", font, 30.f);
     wstepObiekt.setFillColor(sf::Color::Black);
     wstepObiekt.setPosition(720.f, 50.f);
 
@@ -241,7 +241,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
     //WPROWADZANIE PARAMETRÓW LEADA
 
-    sf::Text wstepLead("PODAJ TRANSMITANCJE STEROWNIKA LEAD: ", font, 30.f);
+    sf::Text wstepLead(L"PODAJ TRANSMITANCJĘ STEROWNIKA LEAD: ", font, 30.f);
     wstepLead.setFillColor(sf::Color::Black);
     wstepLead.setPosition(610.f, 50.f);
 
@@ -315,7 +315,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
     //WPROWADZANIE PARAMETRÓW LAGA
 
-    sf::Text wstepLag("PODAJ TRANSMITANCJE STEROWNIKA LAG: ", font, 30.f);
+    sf::Text wstepLag(L"PODAJ TRANSMITANCJĘ STEROWNIKA LAG: ", font, 30.f);
     wstepLag.setFillColor(sf::Color::Black);
     wstepLag.setPosition(610.f, 50.f);
 
@@ -359,19 +359,19 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     //KONIEC WPROWADZANIA PARAMETRÓW LAGA
 
     //WYBÓR SYGNAŁU WEJŚCIOWEGO
-    sf::Text rodzajWejscia("WYBIERZ SYGNAL WEJSCIOWY:", font, 30);
+    sf::Text rodzajWejscia(L"WYBIERZ SYGNAŁ WEJŚCIOWY:", font, 30);
     rodzajWejscia.setFillColor(sf::Color::Black);
     rodzajWejscia.setPosition(720.f, 50.f);
 
-    sf::Text harmoniczny("sygnal harmoniczny", font, 30);
+    sf::Text harmoniczny(L"sygnał harmoniczny", font, 30);
     harmoniczny.setFillColor(sf::Color::Black);
     harmoniczny.setPosition(820.f, 300.f);
 
-    sf::Text prostokatny("sygnal prostokatny", font, 30);
+    sf::Text prostokatny(L"sygnał prostokątny", font, 30);
     prostokatny.setFillColor(sf::Color::Black);
     prostokatny.setPosition(820.f, 450.f);
 
-    sf::Text trojkatny("sygnal trojkatny", font, 30);
+    sf::Text trojkatny(L"sygnał trójkątny", font, 30);
     trojkatny.setFillColor(sf::Color::Black);
     trojkatny.setPosition(835.f, 600.f);
 
@@ -392,7 +392,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
     //PARAMETRY SYGNAŁU HARMONICZNEGO
 
-    sf::Text parametryHarmoniczny("PODAJ WARTOSCI PARAMETROW SYGNALU WEJSCIOWEGO:", font, 30);
+    sf::Text parametryHarmoniczny(L"PODAJ WARTOŚCI PARAMETRÓW SYGNAŁU WEJŚCIOWEGO:", font, 30);
     parametryHarmoniczny.setFillColor(sf::Color::Black);
     parametryHarmoniczny.setPosition(470.f, 300.f);
 
@@ -400,7 +400,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     harmonicznyAmplituda.setFillColor(sf::Color::Black);
     harmonicznyAmplituda.setPosition(750.f, 400.f);
 
-    sf::Text harmonicznyCzestotliwosc("CZESTOTLIWOSC:", font, 30);
+    sf::Text harmonicznyCzestotliwosc(L"CZĘSTOTLIWOŚĆ:", font, 30);
     harmonicznyCzestotliwosc.setFillColor(sf::Color::Black);
     harmonicznyCzestotliwosc.setPosition(710.f, 500.f);
 
@@ -488,53 +488,59 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                     }
                 }
 
-                if (czynnosc.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
+                if (czynnosc.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && (podajAmplitudeH.empty() || podajCzestotliwoscH.empty())) {
                     czynnosc.setFillColor(sf::Color(144, 238, 144));
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                    }
                 }
+                else if (czynnosc.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && !podajAmplitudeH.empty() && !podajCzestotliwoscH.empty())
+                    czynnosc.setFillColor(sf::Color(211, 211, 211));
+                else if (!podajAmplitudeH.empty() && !podajCzestotliwoscH.empty())
+                    czynnosc.setFillColor(sf::Color(144, 238, 144));
                 else {
                     czynnosc.setFillColor(sf::Color(211, 211, 211));
                 }
 
-                if (czynnosc1.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
+                if (czynnosc1.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && (podajA1.empty() || podajB2.empty() || podajB1.empty() || podajB0.empty() || podajA0.empty())) {
                     czynnosc1.setFillColor(sf::Color(144, 238, 144));
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                    }
                 }
+                else if (czynnosc1.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && !podajA1.empty() && !podajA0.empty() && !podajB2.empty() && !podajB1.empty() && !podajB0.empty())
+                    czynnosc1.setFillColor(sf::Color(211, 211, 211));
+                else if (!podajA1.empty() && !podajA0.empty() && !podajB2.empty() && !podajB1.empty() && !podajB0.empty())
+                    czynnosc1.setFillColor(sf::Color(144, 238, 144));
                 else {
                     czynnosc1.setFillColor(sf::Color(211, 211, 211));
                 }
 
-                if (czynnosc2.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
+                if (czynnosc2.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && (podajK1.empty() || podajP1.empty() || podajZ1.empty())) {
                     czynnosc2.setFillColor(sf::Color(144, 238, 144));
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                    }
                 }
+                else if (czynnosc2.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && !podajK1.empty() && !podajP1.empty() && !podajZ1.empty())
+                    czynnosc2.setFillColor(sf::Color(211, 211, 211));
+                else if (!podajK1.empty() && !podajP1.empty() && !podajZ1.empty())
+                    czynnosc2.setFillColor(sf::Color(144, 238, 144));
                 else {
                     czynnosc2.setFillColor(sf::Color(211, 211, 211));
                 }
 
-                if (czynnosc3.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
+                if (czynnosc3.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && (podajK2.empty() || podajP2.empty() || podajZ2.empty()))
                     {
                     czynnosc3.setFillColor(sf::Color(144, 238, 144));
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                    }
                 }
+                else if (czynnosc3.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && !podajK2.empty() && !podajP2.empty() && !podajZ2.empty())
+                    czynnosc3.setFillColor(sf::Color(211, 211, 211));
+                else if (!podajK2.empty() && !podajP2.empty() && !podajZ2.empty())
+                    czynnosc3.setFillColor(sf::Color(144, 238, 144));
                 else {
                     czynnosc3.setFillColor(sf::Color(211, 211, 211));
                 }
 
-                if (czynnosc4.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && *a1 != 0 && *a0 != 0 && *b2 != 0 && *b1 != 0 && *b0 != 0 && *k1 != 0 && *z1 != 0 && *p1 != 0 && *k2 != 0 && *p2 != 0 && *z2 != 0) {
+                if (czynnosc4.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && !podajAmplitudeH.empty() && !podajCzestotliwoscH.empty() && !podajA1.empty() && !podajA0.empty() && !podajB2.empty() && !podajB1.empty() && !podajB0.empty() && !podajK1.empty() && !podajK2.empty() && !podajZ1.empty() && !podajZ2.empty() && !podajP1.empty() && !podajP2.empty()) {
                     czynnosc4.setFillColor(sf::Color(144, 238, 144));
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                         window.close();
+                        window.close();
                     }
                 }
+                else if (czynnosc4.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
+                    czynnosc4.setFillColor(sf::Color(255, 110, 110));
                 else {
                     czynnosc4.setFillColor(sf::Color(211, 211, 211));
                 }
@@ -562,6 +568,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         inputB2Active = false;
                         inputB1Active = false;
                         inputB0Active = false;
+                        miejsceNaA1.setOutlineThickness(2.f);
+                        miejsceNaA0.setOutlineThickness(1.f);
+                        miejsceNaB2.setOutlineThickness(1.f);
+                        miejsceNaB1.setOutlineThickness(1.f);
+                        miejsceNaB0.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaA0.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputA1Active = false;
@@ -569,6 +580,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         inputB2Active = false;
                         inputB1Active = false;
                         inputB0Active = false;
+                        miejsceNaA1.setOutlineThickness(1.f);
+                        miejsceNaA0.setOutlineThickness(2.f);
+                        miejsceNaB2.setOutlineThickness(1.f);
+                        miejsceNaB1.setOutlineThickness(1.f);
+                        miejsceNaB0.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaB2.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputA1Active = false;
@@ -576,6 +592,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         inputB2Active = true;
                         inputB1Active = false;
                         inputB0Active = false;
+                        miejsceNaA1.setOutlineThickness(1.f);
+                        miejsceNaA0.setOutlineThickness(1.f);
+                        miejsceNaB2.setOutlineThickness(2.f);
+                        miejsceNaB1.setOutlineThickness(1.f);
+                        miejsceNaB0.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaB1.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputA1Active = false;
@@ -583,6 +604,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         inputB2Active = false;
                         inputB1Active = true;
                         inputB0Active = false;
+                        miejsceNaA1.setOutlineThickness(1.f);
+                        miejsceNaA0.setOutlineThickness(1.f);
+                        miejsceNaB2.setOutlineThickness(1.f);
+                        miejsceNaB1.setOutlineThickness(2.f);
+                        miejsceNaB0.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaB0.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputA1Active = false;
@@ -590,6 +616,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         inputB2Active = false;
                         inputB1Active = false;
                         inputB0Active = true;
+                        miejsceNaA1.setOutlineThickness(1.f);
+                        miejsceNaA0.setOutlineThickness(1.f);
+                        miejsceNaB2.setOutlineThickness(1.f);
+                        miejsceNaB1.setOutlineThickness(1.f);
+                        miejsceNaB0.setOutlineThickness(2.f);
                     }
                     else if (przyciskZatwierdzania.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         isObiektActive = false;
@@ -630,7 +661,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajA1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajA1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieA1.setString(podajA1);
@@ -642,7 +673,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajA0.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajA0 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieA0.setString(podajA0);
@@ -654,7 +685,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajB2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajB2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieB2.setString(podajB2);
@@ -666,7 +697,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajB1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajB1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieB1.setString(podajB1);
@@ -678,7 +709,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajB0.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajB0 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieB0.setString(podajB0);
@@ -693,16 +724,25 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         inputK1Active = true;
                         inputZ1Active = false;
                         inputP1Active = false;
+                        miejsceNaK1.setOutlineThickness(2.f);
+                        miejsceNaZ1.setOutlineThickness(1.f);
+                        miejsceNaP1.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaZ1.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputK1Active = false;
                         inputZ1Active = true;
                         inputP1Active = false;
+                        miejsceNaK1.setOutlineThickness(1.f);
+                        miejsceNaZ1.setOutlineThickness(2.f);
+                        miejsceNaP1.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaP1.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputK1Active = false;
                         inputZ1Active = false;
                         inputP1Active = true;
+                        miejsceNaK1.setOutlineThickness(1.f);
+                        miejsceNaZ1.setOutlineThickness(1.f);
+                        miejsceNaP1.setOutlineThickness(2.f);
                     }
                     else if (przyciskZatwierdzania.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         isLeadActive = false;
@@ -735,7 +775,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajK1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajK1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieK1.setString(podajK1);
@@ -747,7 +787,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajZ1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajZ1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieZ1.setString(podajZ1);
@@ -759,7 +799,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajP1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajP1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieP1.setString(podajP1);
@@ -774,16 +814,25 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         inputK2Active = true;
                         inputZ2Active = false;
                         inputP2Active = false;
+                        miejsceNaK2.setOutlineThickness(2.f);
+                        miejsceNaZ2.setOutlineThickness(1.f);
+                        miejsceNaP2.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaZ2.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputK2Active = false;
                         inputZ2Active = true;
                         inputP2Active = false;
+                        miejsceNaK2.setOutlineThickness(1.f);
+                        miejsceNaZ2.setOutlineThickness(2.f);
+                        miejsceNaP2.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaP2.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         inputK2Active = false;
                         inputZ2Active = false;
                         inputP2Active = true;
+                        miejsceNaK2.setOutlineThickness(1.f);
+                        miejsceNaZ2.setOutlineThickness(1.f);
+                        miejsceNaP2.setOutlineThickness(2.f);
                     }
                     else if (przyciskZatwierdzania.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         isLagActive = false;
@@ -816,7 +865,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajK2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajK2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieK2.setString(podajK2);
@@ -828,7 +877,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajZ2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajZ2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieZ2.setString(podajZ2);
@@ -840,7 +889,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajP2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajP2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieP2.setString(podajP2);
@@ -941,10 +990,14 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                     if (miejsceNaAmplitudeH.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         AmplitudaHActive = true;
                         CzestotliwoscHActive = false;
+                        miejsceNaAmplitudeH.setOutlineThickness(2.f);
+                        miejsceNaCzestotliwoscH.setOutlineThickness(1.f);
                     }
                     else if (miejsceNaCzestotliwoscH.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         AmplitudaHActive = false;
                         CzestotliwoscHActive = true;
+                        miejsceNaAmplitudeH.setOutlineThickness(1.f);
+                        miejsceNaCzestotliwoscH.setOutlineThickness(2.f);
                     }
                     else if (przyciskZatwierdzania.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos))) {
                         isHarmonicznyActive = false;
@@ -975,7 +1028,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajAmplitudeH.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajAmplitudeH += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieAmplitudyH.setString(podajAmplitudeH);
@@ -987,7 +1040,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                             podajCzestotliwoscH.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
                         }
                     }
-                    else if (event.text.unicode < 128) {
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
                         podajCzestotliwoscH += static_cast<char>(event.text.unicode); // Dodaj nowy znak
                     }
                     wprowadzanieCzestotliwosciH.setString(podajCzestotliwoscH);
@@ -1133,9 +1186,9 @@ int main() {
     Vect B, C, Ax, Bu, xi, xi_1;
     double D, Cx, Du;
 
-    double a11 = 0, a00 = 0, b22 = 0, b11 = 0, b00 = 0, k11 = 0, z11 = 0, p11 = 0, k22 = 0, z22 = 0, p22 = 0;
-    double M = 0;
-    double f = 0;
+    double a11, a00, b22, b11, b00, k11, z11, p11, k22, z22, p22;
+    double M;
+    double f;
 
     bool wyswietlaj = true;
     bool koniec = false;
