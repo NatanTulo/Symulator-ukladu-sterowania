@@ -464,6 +464,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (event.type == sf::Event::MouseButtonPressed) {
                     if (wyborWejscia.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
                     {
+                        isHarmonicznyActive = false;
                         isCzynnoscActive = false;
                         isWejscieActive = true;
                     }
@@ -938,6 +939,8 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         isWejscieActive = false;
                         isHarmonicznyActive = true;
                         *harmonicImput = true;
+                        *rectangularImput = false;
+                        *triangularImput = false;
                     }
                 }
                 else {
@@ -949,6 +952,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                         *harmonicImput = false;
                         *rectangularImput = true;
+                        *triangularImput = false;
                         isWejscieActive = false;
                         isHarmonicznyActive = true;
                     }
