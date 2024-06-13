@@ -1242,8 +1242,19 @@ int main() {
             for (i = 0; i <= total; i++) {
                 us[i] = M * sin(w * i * h);
                 uf[i] = (us[i] > 0) ? M : -M;
-                double t1 = fmod(w * i * h, (2*M)) - M;
-                ut[i] = (t1 < 0) ? (M + t1) : (M - t1);
+
+                double phase = fmod(w * h * i / (2 * pi), 1.0);
+                if (phase < 0.25) {
+                    ut[i] = 4 * M * phase;
+                }
+                else if (phase < 0.75) {
+                    ut[i] = 2 * M - 4 * M * phase;
+                }
+                else {
+                    ut[i] = -4 * M + 4 * M * phase;
+                }
+
+                
             }
 
             xi_1.n[0] = xi_1.n[1] = xi_1.n[2] = xi_1.n[3] = 0;
