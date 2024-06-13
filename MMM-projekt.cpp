@@ -33,7 +33,7 @@ Vect operator*(const Vect& U, const double& d) {
 Vect operator*(const Matr& A, const Vect& V) {
     Vect W;
     for (int i = 0; i < N; i++) {
-        W.n[i] = 0;
+        W.n[i] = 0; 
         for (int j = 0; j < N; j++)
             W.n[i] += A.n[i][j] * V.n[j];
     }
@@ -49,15 +49,15 @@ double operator*(const Vect& U, const Vect& V) {
 
 void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double* k1, double* z1, double* p1, double* k2, double* z2, double* p2, double* m, double *ff, bool *wyswietlWykresy, bool *zamknij, bool *harmonicImput, bool *rectangularImput, bool *triangularImput)
 {
-    // Utworzenie głównego okna
+    
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Korektor Lead-Lag");
 
-    // Załaduj czcionkę
+    
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) {
     }
 
-    // Utworzenie pola tekstowego
+    
     sf::Text inputText("", font, 30);
     inputText.setFillColor(sf::Color::Black);
     inputText.setPosition(50.f, 50.f);
@@ -67,7 +67,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     zatwierdzanie.setPosition(1700, 920);
 
     sf::RectangleShape przyciskZatwierdzania(sf::Vector2f(150.0f, 50.0f));
-    przyciskZatwierdzania.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    przyciskZatwierdzania.setFillColor(sf::Color(211, 211, 211)); 
     przyciskZatwierdzania.setPosition(1680.0f, 907.0f);
 
     sf::Text cofanie("COFNIJ", font, 20);
@@ -75,7 +75,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     cofanie.setPosition(1719, 920);
 
     sf::RectangleShape przyciskCofania(sf::Vector2f(150.0f, 50.0f));
-    przyciskCofania.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    przyciskCofania.setFillColor(sf::Color(211, 211, 211)); 
     przyciskCofania.setPosition(1680.0f, 907.0f);
 
     sf::Text wychodzenie(L"WYJDŹ", font, 20);
@@ -83,32 +83,32 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     wychodzenie.setPosition(1719, 840);
 
     sf::RectangleShape przyciskWychodzenia(sf::Vector2f(150.0f, 50.0f));
-    przyciskWychodzenia.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    przyciskWychodzenia.setFillColor(sf::Color(211, 211, 211)); 
     przyciskWychodzenia.setPosition(1680.0f, 827.0f);
 
-    //OKNO GŁÓWNE
+    
     sf::Text wyborCzynnosci(L"WYBIERZ, CO CHCESZ ZROBIĆ:", font, 30);
     wyborCzynnosci.setFillColor(sf::Color::Black);
     wyborCzynnosci.setPosition(750.f, 50.f);
 
     sf::RectangleShape czynnosc(sf::Vector2f(600.0f, 80.0f));
-    czynnosc.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    czynnosc.setFillColor(sf::Color(211, 211, 211)); 
     czynnosc.setPosition(250.0f, 300.0f);
 
     sf::RectangleShape czynnosc1(sf::Vector2f(600.0f, 80.0f));
-    czynnosc1.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    czynnosc1.setFillColor(sf::Color(211, 211, 211)); 
     czynnosc1.setPosition(250.0f, 500.0f);
 
     sf::RectangleShape czynnosc2(sf::Vector2f(600.0f, 80.0f));
-    czynnosc2.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    czynnosc2.setFillColor(sf::Color(211, 211, 211));
     czynnosc2.setPosition(1050.0f, 300.0f);
 
     sf::RectangleShape czynnosc3(sf::Vector2f(600.0f, 80.0f));
-    czynnosc3.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    czynnosc3.setFillColor(sf::Color(211, 211, 211)); 
     czynnosc3.setPosition(1050.0f, 500.0f);
 
     sf::RectangleShape czynnosc4(sf::Vector2f(800.0f, 80.0f));
-    czynnosc4.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    czynnosc4.setFillColor(sf::Color(211, 211, 211)); 
     czynnosc4.setPosition(550.0f, 800.0f);
 
 
@@ -139,9 +139,6 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     button1.setOutlineThickness(2);
     button1.setPosition(150.f, 215.f);
 
-    //KONIEC OKNA GŁÓWNEGO
-
-    //WPROWADZANIE PARAMETRÓW OBIEKTU
 
     sf::Text wstepObiekt(L"PODAJ TRANSMITANCJĘ OBIEKTU: ", font, 30.f);
     wstepObiekt.setFillColor(sf::Color::Black);
@@ -236,10 +233,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     bool inputB1Active = false;
     bool inputB0Active = false;
 
-    //KONIEC WPROWADZANIA PARAMETRÓW OBIEKTU
-
-
-    //WPROWADZANIE PARAMETRÓW LEADA
+    
 
     sf::Text wstepLead(L"PODAJ TRANSMITANCJĘ STEROWNIKA LEAD: ", font, 30.f);
     wstepLead.setFillColor(sf::Color::Black);
@@ -311,9 +305,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     bool inputZ1Active = false;
     bool inputP1Active = false;
 
-    //KONIEC WPROWADZANIA PARAMETRÓW LEADA
 
-    //WPROWADZANIE PARAMETRÓW LAGA
 
     sf::Text wstepLag(L"PODAJ TRANSMITANCJĘ STEROWNIKA LAG: ", font, 30.f);
     wstepLag.setFillColor(sf::Color::Black);
@@ -356,9 +348,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     bool inputZ2Active = false;
     bool inputP2Active = false;
 
-    //KONIEC WPROWADZANIA PARAMETRÓW LAGA
-
-    //WYBÓR SYGNAŁU WEJŚCIOWEGO
+   
     sf::Text rodzajWejscia(L"WYBIERZ SYGNAŁ WEJŚCIOWY:", font, 30);
     rodzajWejscia.setFillColor(sf::Color::Black);
     rodzajWejscia.setPosition(720.f, 50.f);
@@ -377,20 +367,16 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
 
     sf::RectangleShape sygnal1(sf::Vector2f(600.0f, 80.0f));
-    sygnal1.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    sygnal1.setFillColor(sf::Color(211, 211, 211)); 
     sygnal1.setPosition(645.0f, 280.0f);
 
     sf::RectangleShape sygnal2(sf::Vector2f(600.0f, 80.0f));
-    sygnal2.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    sygnal2.setFillColor(sf::Color(211, 211, 211));
     sygnal2.setPosition(645.0f, 430.0f);
 
     sf::RectangleShape sygnal3(sf::Vector2f(600.0f, 80.0f));
-    sygnal3.setFillColor(sf::Color(211, 211, 211)); // Szary kolor
+    sygnal3.setFillColor(sf::Color(211, 211, 211));
     sygnal3.setPosition(645.0f, 580.0f);
-
-    //KONIEC WYBORU WEJŚCIA
-
-    //PARAMETRY SYGNAŁU HARMONICZNEGO
 
     sf::Text parametryHarmoniczny(L"PODAJ WARTOŚCI PARAMETRÓW SYGNAŁU WEJŚCIOWEGO:", font, 30);
     parametryHarmoniczny.setFillColor(sf::Color::Black);
@@ -430,7 +416,6 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     bool CzestotliwoscHActive = false;
 
 
-    //AKTYWNE OKNA
     bool isCzynnoscActive = true;
     bool isObiektActive = false;
     bool isLeadActive = false;
@@ -442,19 +427,14 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
     std::string inputValue;
 
-    // Flaga do sprawdzenia, czy przycisk został utworzony
-    bool buttonCreated = false;
 
-    // Główna pętla programu
     while (window.isOpen())
     {
-        // Przetwarzanie zdarzeń
         sf::Event event;
         while (window.pollEvent(event))
         {
 
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            // Zamknięcie okna: wyjście
             if (event.type == sf::Event::Closed)
                 window.close();
 
@@ -659,11 +639,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputA1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajA1.empty()) {
-                            podajA1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajA1.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajA1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajA1 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieA1.setString(podajA1);
                 }
@@ -671,11 +651,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputA0Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajA0.empty()) {
-                            podajA0.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajA0.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajA0 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajA0 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieA0.setString(podajA0);
                 }
@@ -683,11 +663,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputB2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajB2.empty()) {
-                            podajB2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajB2.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajB2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajB2 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieB2.setString(podajB2);
                 }
@@ -695,11 +675,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputB1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajB1.empty()) {
-                            podajB1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajB1.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajB1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajB1 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieB1.setString(podajB1);
                 }
@@ -707,11 +687,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputB0Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajB0.empty()) {
-                            podajB0.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajB0.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajB0 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajB0 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieB0.setString(podajB0);
                 }
@@ -773,11 +753,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputK1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajK1.empty()) {
-                            podajK1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajK1.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajK1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajK1 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieK1.setString(podajK1);
                 }
@@ -785,11 +765,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputZ1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajZ1.empty()) {
-                            podajZ1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajZ1.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajZ1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajZ1 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieZ1.setString(podajZ1);
                 }
@@ -797,11 +777,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputP1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajP1.empty()) {
-                            podajP1.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajP1.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajP1 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajP1 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieP1.setString(podajP1);
                 }
@@ -863,11 +843,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputK2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajK2.empty()) {
-                            podajK2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajK2.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajK2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajK2 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieK2.setString(podajK2);
                 }
@@ -875,11 +855,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputZ2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajZ2.empty()) {
-                            podajZ2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajZ2.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajZ2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajZ2 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieZ2.setString(podajZ2);
                 }
@@ -887,49 +867,15 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputP2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajP2.empty()) {
-                            podajP2.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajP2.pop_back(); 
                         }
                     }
-                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajP2 += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                    else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
+                        podajP2 += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieP2.setString(podajP2);
                 }
             }
-
-            // Obsługa zatwierdzenia wprowadzonej wartości enterem
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
-            {
-                // Przekonwertuj wartość na int
-                int intValue = std::stoi(inputValue);
-
-                // Utwórz przycisk z wartością
-                sf::RectangleShape button(sf::Vector2f(150.f, 50.f));
-                button.setFillColor(sf::Color::Green);
-                button.setPosition(50.f, 150.f);
-
-                sf::Text buttonText(inputValue, font, intValue);
-                buttonText.setFillColor(sf::Color::Black);
-                buttonText.setPosition(50.f, 150.f);
-
-                // Rysuj przycisk z wartością
-                window.draw(button);
-                window.draw(buttonText);
-
-                // Wyświetl okno z przyciskiem
-                window.display();
-
-                // Zatrzymaj działanie programu na 5 sekund
-                sf::sleep(sf::seconds(5));
-
-                // Gdy wartość zostanie zatwierdzona, wyczyść pole tekstowe
-                inputValue.clear();
-                inputText.setString(inputValue);
-
-                // Ustaw flagę, że przycisk został utworzony
-                buttonCreated = true;
-            }
-
 
             if (isWejscieActive)
             {
@@ -1029,11 +975,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (AmplitudaHActive && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajAmplitudeH.empty()) {
-                            podajAmplitudeH.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajAmplitudeH.pop_back(); 
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajAmplitudeH += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                        podajAmplitudeH += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieAmplitudyH.setString(podajAmplitudeH);
                 }
@@ -1041,11 +987,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (CzestotliwoscHActive && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajCzestotliwoscH.empty()) {
-                            podajCzestotliwoscH.pop_back(); // Usuń ostatni znak w przypadku naciśnięcia Backspace
+                            podajCzestotliwoscH.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajCzestotliwoscH += static_cast<char>(event.text.unicode); // Dodaj nowy znak
+                        podajCzestotliwoscH += static_cast<char>(event.text.unicode); 
                     }
                     wprowadzanieCzestotliwosciH.setString(podajCzestotliwoscH);
                 }
@@ -1053,10 +999,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
         }
 
-        // Czyszczenie ekranu
         window.clear(sf::Color::White);
-
-        // Rysuj pole tekstowe
 
         if (isCzynnoscActive)
         {
@@ -1160,11 +1103,6 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
             window.draw(zatwierdzanie);
         }
 
-
-
-        //window.draw(button1);
-
-        // Aktualizacja okna
         window.display();
     }
 }
@@ -1300,36 +1238,42 @@ int main() {
             std::cout << "b2 = " << bb22 << std::endl;
             std::cout << "b3 =" << bb33 << std::endl;
 
+            auto f = figure();
+
+            f->position(460, 90);
+            f->size(1000, 800);
+
             if (wejscieSinus)
             {
+                subplot(2, 1, 0);
                 plot(time, us, "-r");
-                xlabel("Time (s)");
+                xlabel("czas");
                 ylabel("u(t)");
-                title("u(t)");
-                show();
+                title("Sygnał Wejściowy");
             }
             else if (wejscieProstokat)
             {
+                subplot(2, 1, 0);
                 plot(time, uf, "-r");
-                xlabel("Time (s)");
+                xlabel("czas");
                 ylabel("u(t)");
-                title("u(t)");
-                show();
+                title("Sygnał Wejściowy");
             }
             else if (wejscieTrojkat)
             {
+                subplot(2, 1, 0);
                 plot(time, ut, "-r");
-                xlabel("Time (s)");
+                xlabel("czas");
                 ylabel("u(t)");
-                title("u(t)");
-                show();
+                title("Sygnał Wejściowy");
             }
             
-
+            subplot(2, 1, 1);
             plot(time, y, "-b");
-            xlabel("Time (s)");
+            xlabel("czas");
             ylabel("y(t)");
-            title("y(t)");
+            title("Sygnał wyjściowy");
+
             show();
         }
     }
