@@ -348,28 +348,28 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
     sf::Text harmoniczny(L"sygnał harmoniczny", font, 30);
     harmoniczny.setFillColor(sf::Color::Black);
-    harmoniczny.setPosition(820.f, 300.f);
+    harmoniczny.setPosition(820.f, 400.f);
 
     sf::Text prostokatny(L"sygnał prostokątny", font, 30);
     prostokatny.setFillColor(sf::Color::Black);
-    prostokatny.setPosition(820.f, 450.f);
+    prostokatny.setPosition(820.f, 550.f);
 
     sf::Text trojkatny(L"sygnał trójkątny", font, 30);
     trojkatny.setFillColor(sf::Color::Black);
-    trojkatny.setPosition(835.f, 600.f);
+    trojkatny.setPosition(835.f, 700.f);
 
 
     sf::RectangleShape sygnal1(sf::Vector2f(600.0f, 80.0f));
     sygnal1.setFillColor(sf::Color(211, 211, 211));
-    sygnal1.setPosition(645.0f, 280.0f);
+    sygnal1.setPosition(645.0f, 380.0f);
 
     sf::RectangleShape sygnal2(sf::Vector2f(600.0f, 80.0f));
     sygnal2.setFillColor(sf::Color(211, 211, 211));
-    sygnal2.setPosition(645.0f, 430.0f);
+    sygnal2.setPosition(645.0f, 530.0f);
 
     sf::RectangleShape sygnal3(sf::Vector2f(600.0f, 80.0f));
     sygnal3.setFillColor(sf::Color(211, 211, 211));
-    sygnal3.setPosition(645.0f, 580.0f);
+    sygnal3.setPosition(645.0f, 680.0f);
 
     sf::Text parametryHarmoniczny(L"PODAJ WARTOŚCI PARAMETRÓW SYGNAŁU WEJŚCIOWEGO:", font, 30);
     parametryHarmoniczny.setFillColor(sf::Color::Black);
