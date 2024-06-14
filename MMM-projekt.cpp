@@ -1,8 +1,4 @@
-﻿#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <string>
-#include <thread>
-#include <cmath>
+﻿#include <SFML/Graphics.hpp>
 #include <matplot/matplot.h>
 
 using namespace matplot;
