@@ -1212,30 +1212,24 @@ int main() {
             f->position(460, 90);
             f->size(1000, 800);
 
+            subplot(2, 1, 0);
+
             if (wejscieSinus)
             {
-                subplot(2, 1, 0);
                 plot(time, us, "-r");
-                xlabel("czas");
-                ylabel("u(t)");
-                title("Sygnał Wejściowy");
             }
             else if (wejscieProstokat)
             {
-                subplot(2, 1, 0);
                 plot(time, uf, "-r");
-                xlabel("czas");
-                ylabel("u(t)");
-                title("Sygnał Wejściowy");
             }
             else if (wejscieTrojkat)
             {
-                subplot(2, 1, 0);
                 plot(time, ut, "-r");
-                xlabel("czas");
-                ylabel("u(t)");
-                title("Sygnał Wejściowy");
             }
+
+            xlabel("czas");
+            ylabel("u(t)");
+            title("Sygnał Wejściowy");
             
             subplot(2, 1, 1);
             plot(time, y, "-b");
