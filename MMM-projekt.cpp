@@ -33,7 +33,7 @@ Vect operator*(const Vect& U, const double& d) {
 Vect operator*(const Matr& A, const Vect& V) {
     Vect W;
     for (int i = 0; i < N; i++) {
-        W.n[i] = 0; 
+        W.n[i] = 0;
         for (int j = 0; j < N; j++)
             W.n[i] += A.n[i][j] * V.n[j];
     }
@@ -47,12 +47,12 @@ double operator*(const Vect& U, const Vect& V) {
     return s;
 }
 
-void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double* k1, double* z1, double* p1, double* k2, double* z2, double* p2, double* m, double *ff, bool *wyswietlWykresy, bool *zamknij, bool *harmonicImput, bool *rectangularImput, bool *triangularImput)
+void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double* k1, double* z1, double* p1, double* k2, double* z2, double* p2, double* m, double* ff, bool* wyswietlWykresy, bool* zamknij, bool* harmonicImput, bool* rectangularImput, bool* triangularImput)
 {
-    
+
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Korektor Lead-Lag");
 
-    
+
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) {
     }
@@ -66,7 +66,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     zatwierdzanie.setPosition(1700, 920);
 
     sf::RectangleShape przyciskZatwierdzania(sf::Vector2f(150.0f, 50.0f));
-    przyciskZatwierdzania.setFillColor(sf::Color(211, 211, 211)); 
+    przyciskZatwierdzania.setFillColor(sf::Color(211, 211, 211));
     przyciskZatwierdzania.setPosition(1680.0f, 907.0f);
 
     sf::Text cofanie("COFNIJ", font, 20);
@@ -74,7 +74,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     cofanie.setPosition(1719, 920);
 
     sf::RectangleShape przyciskCofania(sf::Vector2f(150.0f, 50.0f));
-    przyciskCofania.setFillColor(sf::Color(211, 211, 211)); 
+    przyciskCofania.setFillColor(sf::Color(211, 211, 211));
     przyciskCofania.setPosition(1680.0f, 907.0f);
 
     sf::Text wychodzenie(L"WYJDŹ", font, 20);
@@ -82,20 +82,20 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     wychodzenie.setPosition(1719, 840);
 
     sf::RectangleShape przyciskWychodzenia(sf::Vector2f(150.0f, 50.0f));
-    przyciskWychodzenia.setFillColor(sf::Color(211, 211, 211)); 
+    przyciskWychodzenia.setFillColor(sf::Color(211, 211, 211));
     przyciskWychodzenia.setPosition(1680.0f, 827.0f);
 
-    
+
     sf::Text wyborCzynnosci(L"WYBIERZ, CO CHCESZ ZROBIĆ:", font, 30);
     wyborCzynnosci.setFillColor(sf::Color::Black);
     wyborCzynnosci.setPosition(750.f, 50.f);
 
     sf::RectangleShape czynnosc(sf::Vector2f(600.0f, 80.0f));
-    czynnosc.setFillColor(sf::Color(211, 211, 211)); 
+    czynnosc.setFillColor(sf::Color(211, 211, 211));
     czynnosc.setPosition(250.0f, 300.0f);
 
     sf::RectangleShape czynnosc1(sf::Vector2f(600.0f, 80.0f));
-    czynnosc1.setFillColor(sf::Color(211, 211, 211)); 
+    czynnosc1.setFillColor(sf::Color(211, 211, 211));
     czynnosc1.setPosition(250.0f, 500.0f);
 
     sf::RectangleShape czynnosc2(sf::Vector2f(600.0f, 80.0f));
@@ -103,11 +103,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     czynnosc2.setPosition(1050.0f, 300.0f);
 
     sf::RectangleShape czynnosc3(sf::Vector2f(600.0f, 80.0f));
-    czynnosc3.setFillColor(sf::Color(211, 211, 211)); 
+    czynnosc3.setFillColor(sf::Color(211, 211, 211));
     czynnosc3.setPosition(1050.0f, 500.0f);
 
     sf::RectangleShape czynnosc4(sf::Vector2f(800.0f, 80.0f));
-    czynnosc4.setFillColor(sf::Color(211, 211, 211)); 
+    czynnosc4.setFillColor(sf::Color(211, 211, 211));
     czynnosc4.setPosition(550.0f, 800.0f);
 
 
@@ -131,12 +131,6 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     sf::Text zakoncz(L"zakończ i wyświetl wykresy", font, 30);
     zakoncz.setFillColor(sf::Color::Black);
     zakoncz.setPosition(750.f, 820.f);
-
-    sf::RectangleShape button1(sf::Vector2f(10.f, 10.f));
-    button1.setFillColor(sf::Color::White);
-    button1.setOutlineColor(sf::Color::Black);
-    button1.setOutlineThickness(2);
-    button1.setPosition(150.f, 215.f);
 
 
     sf::Text wstepObiekt(L"PODAJ TRANSMITANCJĘ OBIEKTU: ", font, 30.f);
@@ -232,7 +226,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     bool inputB1Active = false;
     bool inputB0Active = false;
 
-    
+
 
     sf::Text wstepLead(L"PODAJ TRANSMITANCJĘ STEROWNIKA LEAD: ", font, 30.f);
     wstepLead.setFillColor(sf::Color::Black);
@@ -347,7 +341,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     bool inputZ2Active = false;
     bool inputP2Active = false;
 
-   
+
     sf::Text rodzajWejscia(L"WYBIERZ SYGNAŁ WEJŚCIOWY:", font, 30);
     rodzajWejscia.setFillColor(sf::Color::Black);
     rodzajWejscia.setPosition(720.f, 50.f);
@@ -366,7 +360,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
 
 
     sf::RectangleShape sygnal1(sf::Vector2f(600.0f, 80.0f));
-    sygnal1.setFillColor(sf::Color(211, 211, 211)); 
+    sygnal1.setFillColor(sf::Color(211, 211, 211));
     sygnal1.setPosition(645.0f, 280.0f);
 
     sf::RectangleShape sygnal2(sf::Vector2f(600.0f, 80.0f));
@@ -441,23 +435,23 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
             if (isCzynnoscActive)
             {
                 if (event.type == sf::Event::MouseButtonPressed) {
-                    if (wyborWejscia.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
+                    if (czynnosc.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
                     {
                         isHarmonicznyActive = false;
                         isCzynnoscActive = false;
                         isWejscieActive = true;
                     }
-                    else if (transmitancjaObiektu.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
+                    else if (czynnosc1.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
                     {
                         isCzynnoscActive = false;
                         isObiektActive = true;
                     }
-                    else if (transmitancjaLead.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
+                    else if (czynnosc2.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
                     {
                         isCzynnoscActive = false;
                         isLeadActive = true;
                     }
-                    else if (transmitancjaLag.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
+                    else if (czynnosc3.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
                     {
                         isCzynnoscActive = false;
                         isLagActive = true;
@@ -502,7 +496,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 }
 
                 if (czynnosc3.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && (podajK2.empty() || podajP2.empty() || podajZ2.empty()))
-                    {
+                {
                     czynnosc3.setFillColor(sf::Color(144, 238, 144));
                 }
                 else if (czynnosc3.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && !podajK2.empty() && !podajP2.empty() && !podajZ2.empty())
@@ -516,6 +510,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (czynnosc4.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)) && !podajAmplitudeH.empty() && !podajCzestotliwoscH.empty() && !podajA1.empty() && !podajA0.empty() && !podajB2.empty() && !podajB1.empty() && !podajB0.empty() && !podajK1.empty() && !podajK2.empty() && !podajZ1.empty() && !podajZ2.empty() && !podajP1.empty() && !podajP2.empty()) {
                     czynnosc4.setFillColor(sf::Color(144, 238, 144));
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                        *wyswietlWykresy = true;
                         window.close();
                     }
                 }
@@ -638,7 +633,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputA1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajA1.empty()) {
-                            podajA1.pop_back(); 
+                            podajA1.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
@@ -650,11 +645,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputA0Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajA0.empty()) {
-                            podajA0.pop_back(); 
+                            podajA0.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajA0 += static_cast<char>(event.text.unicode); 
+                        podajA0 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieA0.setString(podajA0);
                 }
@@ -662,11 +657,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputB2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajB2.empty()) {
-                            podajB2.pop_back(); 
+                            podajB2.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajB2 += static_cast<char>(event.text.unicode); 
+                        podajB2 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieB2.setString(podajB2);
                 }
@@ -674,11 +669,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputB1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajB1.empty()) {
-                            podajB1.pop_back(); 
+                            podajB1.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajB1 += static_cast<char>(event.text.unicode); 
+                        podajB1 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieB1.setString(podajB1);
                 }
@@ -686,11 +681,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputB0Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajB0.empty()) {
-                            podajB0.pop_back(); 
+                            podajB0.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajB0 += static_cast<char>(event.text.unicode); 
+                        podajB0 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieB0.setString(podajB0);
                 }
@@ -752,11 +747,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputK1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajK1.empty()) {
-                            podajK1.pop_back(); 
+                            podajK1.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajK1 += static_cast<char>(event.text.unicode); 
+                        podajK1 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieK1.setString(podajK1);
                 }
@@ -764,7 +759,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputZ1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajZ1.empty()) {
-                            podajZ1.pop_back(); 
+                            podajZ1.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
@@ -776,11 +771,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputP1Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajP1.empty()) {
-                            podajP1.pop_back(); 
+                            podajP1.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajP1 += static_cast<char>(event.text.unicode); 
+                        podajP1 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieP1.setString(podajP1);
                 }
@@ -842,11 +837,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputK2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajK2.empty()) {
-                            podajK2.pop_back(); 
+                            podajK2.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajK2 += static_cast<char>(event.text.unicode); 
+                        podajK2 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieK2.setString(podajK2);
                 }
@@ -854,11 +849,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputZ2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajZ2.empty()) {
-                            podajZ2.pop_back(); 
+                            podajZ2.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajZ2 += static_cast<char>(event.text.unicode); 
+                        podajZ2 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieZ2.setString(podajZ2);
                 }
@@ -866,11 +861,11 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (inputP2Active && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajP2.empty()) {
-                            podajP2.pop_back(); 
+                            podajP2.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.' || event.text.unicode == '-') {
-                        podajP2 += static_cast<char>(event.text.unicode); 
+                        podajP2 += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieP2.setString(podajP2);
                 }
@@ -974,7 +969,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                 if (AmplitudaHActive && event.type == sf::Event::TextEntered) {
                     if (event.text.unicode == '\b') {
                         if (!podajAmplitudeH.empty()) {
-                            podajAmplitudeH.pop_back(); 
+                            podajAmplitudeH.pop_back();
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
@@ -990,7 +985,7 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
                         }
                     }
                     else if (event.text.unicode == '1' || event.text.unicode == '2' || event.text.unicode == '3' || event.text.unicode == '4' || event.text.unicode == '5' || event.text.unicode == '6' || event.text.unicode == '7' || event.text.unicode == '8' || event.text.unicode == '9' || event.text.unicode == '0' || event.text.unicode == '.') {
-                        podajCzestotliwoscH += static_cast<char>(event.text.unicode); 
+                        podajCzestotliwoscH += static_cast<char>(event.text.unicode);
                     }
                     wprowadzanieCzestotliwosciH.setString(podajCzestotliwoscH);
                 }
@@ -1127,11 +1122,11 @@ int main() {
     double D, Cx, Du;
 
     double a11, a00, b22, b11, b00, k11, z11, p11, k22, z22, p22, M, f, aa33, aa22, aa11, aa00, bb33, bb22, bb11, bb00, w;
-    bool wyswietlaj = true; bool koniec = false; bool wejscieSinus = false; bool wejscieProstokat = false; bool wejscieTrojkat = false;
+    bool wyswietlaj = false; bool koniec = false; bool wejscieSinus = false; bool wejscieProstokat = false; bool wejscieTrojkat = false;
 
     while (!koniec)
     {
-        Grafika(&a11, &a00, &b22, &b11, &b00, &k11, &z11, &p11, &k22, &z22, &p22, &M, &f, &wyswietlaj, &koniec, &wejscieSinus, &wejscieProstokat, &wejscieTrojkat );
+        Grafika(&a11, &a00, &b22, &b11, &b00, &k11, &z11, &p11, &k22, &z22, &p22, &M, &f, &wyswietlaj, &koniec, &wejscieSinus, &wejscieProstokat, &wejscieTrojkat);
 
         if (wyswietlaj)
         {
@@ -1190,7 +1185,7 @@ int main() {
                     Bu = B * ut[i];
                     Du = D * ut[i];
                 }
-                
+
                 Cx = C * xi_1;
                 xi = Ax + Bu;
 
@@ -1230,7 +1225,7 @@ int main() {
             xlabel("czas");
             ylabel("u(t)");
             title("Sygnał Wejściowy");
-            
+
             subplot(2, 1, 1);
             plot(time, y, "-b");
             xlabel("czas");
@@ -1238,9 +1233,12 @@ int main() {
             title("Sygnał wyjściowy");
 
             show();
+            wyswietlaj = false;
         }
+        else
+            koniec = true;
     }
-    
-    
+
+
     return 0;
 }
