@@ -57,7 +57,6 @@ void Grafika(double* a1, double* a0, double* b2, double* b1, double* b0, double*
     if (!font.loadFromFile("arial.ttf")) {
     }
 
-    
     sf::Text inputText("", font, 30);
     inputText.setFillColor(sf::Color::Black);
     inputText.setPosition(50.f, 50.f);
@@ -1123,37 +1122,16 @@ void calculations(double* a1, double* a0, double* b2, double* b1, double* b0, do
 
 int main() {
     int i, total;
-    double aa33, aa22, aa11, aa00, bb33, bb22, bb11, bb00, w;
     Matr A;
     Vect B, C, Ax, Bu, xi, xi_1;
     double D, Cx, Du;
 
-    double a11, a00, b22, b11, b00, k11, z11, p11, k22, z22, p22;
-    double M;
-    double f;
-
-    bool wyswietlaj = true;
-    bool koniec = false;
-
-    bool wejscieSinus = false;
-    bool wejscieProstokat = false;
-    bool wejscieTrojkat = false;
+    double a11, a00, b22, b11, b00, k11, z11, p11, k22, z22, p22, M, f, aa33, aa22, aa11, aa00, bb33, bb22, bb11, bb00, w;
+    bool wyswietlaj = true; bool koniec = false; bool wejscieSinus = false; bool wejscieProstokat = false; bool wejscieTrojkat = false;
 
     while (!koniec)
     {
         Grafika(&a11, &a00, &b22, &b11, &b00, &k11, &z11, &p11, &k22, &z22, &p22, &M, &f, &wyswietlaj, &koniec, &wejscieSinus, &wejscieProstokat, &wejscieTrojkat );
-
-        std::cout << "czestotliwosc = " << f << std::endl;
-        std::cout << "a0 = " << a00 << std::endl;
-        std::cout << "b2 = " << b22 << std::endl;
-        std::cout << "b1 = " << b11 << std::endl;
-        std::cout << "b0 = " << b00 << std::endl;
-        std::cout << "k1 = " << k11 << std::endl;
-        std::cout << "z1 = " << z11 << std::endl;
-        std::cout << "p1 = " << p11 << std::endl;
-        std::cout << "k2 = " << k22 << std::endl;
-        std::cout << "z2 = " << z22 << std::endl;
-        std::cout << "p2 = " << p22 << std::endl;
 
         if (wyswietlaj)
         {
@@ -1191,8 +1169,6 @@ int main() {
                 else {
                     ut[i] = -4 * M + 4 * M * phase;
                 }
-
-                
             }
 
             xi_1.n[0] = xi_1.n[1] = xi_1.n[2] = xi_1.n[3] = 0;
@@ -1217,6 +1193,8 @@ int main() {
                 
                 Cx = C * xi_1;
                 xi = Ax + Bu;
+
+                //Euler: xi - wysokość, h - szerokość
                 xi = xi * h;
                 xi = xi_1 + xi;
                 xi_1 = xi;
@@ -1228,15 +1206,6 @@ int main() {
                 time[i] = i * h;
             }
 
-
-            std::cout << "a0 =" << aa00 << std::endl;
-            std::cout << "a1 = " << aa11 << std::endl;
-            std::cout << "a2 = " << aa22 << std::endl;
-            std::cout << "a3 = " <<aa33 << std::endl;
-            std::cout << "b0 = " << bb00 << std::endl;
-            std::cout << "b1 = " << bb11 << std::endl;
-            std::cout << "b2 = " << bb22 << std::endl;
-            std::cout << "b3 =" << bb33 << std::endl;
 
             auto f = figure();
 
@@ -1279,6 +1248,5 @@ int main() {
     }
     
     
-
     return 0;
 }
