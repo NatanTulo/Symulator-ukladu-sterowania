@@ -2,11 +2,11 @@
 
 ## Opis projektu
 Dany jest układ opisany transmitancją:
-  
-       a1·s + a0
-G(s) = --------------
-      b2·s² + b1·s + b0
-  
+
+$$
+G(s)=\frac{a_1 s + a_0}{b_2 s^2 + b_1 s + b_0}
+$$
+
 gdzie a1, a0, b2, b1, b0 to parametry modelu.
 
 Projekt polega na implementacji symulatora tego układu wraz z parą sterowników LEAD-LAG, działających w konfiguracji z ujemnym sprzężeniem zwrotnym.
